@@ -1,0 +1,26 @@
+<script>
+
+    // 1. This is the "salted" data you gave the students
+// The first 3 characters "k9s" are the salt.
+const rawData = "k9sYUhSMWNEb3ZMM0p5WVhab2JHVmxMbU52YlE9PQ==";
+
+function convertToUrl(input) {
+    // 2. USE SLICE()
+    // We tell the code: "Ignore the first 3 characters and take the rest"
+    const unsalted = input.slice(3);
+    console.log("After slice(3):", unsalted); // Result: YUhSMWNEb3ZMM0p5WVhab2JHVmxMbU52YlE9PQ==
+
+    // 3. USE ATOB()
+    // Now we decode the pure Base64 string back into text
+    const decodedUrl = atob(unsalted);
+    console.log("After atob():", decodedUrl); // Result: https://bravolee.com
+
+    // 4. DISPLAY ON WEB BROWSER
+    // We target a link in our HTML and inject the result
+    const link = document.getElementById("demo-link");
+    link.href = decodedUrl;
+    link.textContent = "Go to " + decodedUrl;
+}
+
+convertToUrl(rawData);
+</script>
